@@ -1,0 +1,38 @@
+-As discussed earlier, one of the main reasons of using TS is catching legitimate 
+bugs in our code.
+
+/**
+        const announcement = "Hello World!";
+        announcement.toLocaleLowercase();
+        //this will thro an error, why, the typo in our method
+        //it should instead read:
+        announcement,toLocaleLowerCase();
+
+*/
+
+/**     
+        function flipCoin() {
+            return Math.random < 0.5;
+        }
+//will return an error that reads 
+"Operator '<' cannot be applied to types '()=> number' and 'number' "
+*/
+-Thebug in this case is an uncalled function
+
+-It can also be used for editing code, and the core type-checker provides error messages
+and code completion as one types in the editor, often referred to as 'tooling' in TS.
+
+
+-It can also prevent us from making those mistakes in our code in the first place.
+-To make our compiler stricter use 'tsc --noEmitOnError fileName.ts'
+-This line will only compile a .js file if there are no TS errors, making it essential for development.
+-This will ensure that we are running error free code, because the main purpose of TS is catching errors that JS cannot.
+-When TS compiles with errors, it often gets:
+    .silent pugs that show up later in production.
+    .runtime crashes that could have been prevented.
+    .incorrect business logic due to type coercion
+    .security vulnerabilities from expected data types.
+
+-The more typed my program is, the more validation and tooling I'll get, meaning fewer bugs as I code.
+
+  

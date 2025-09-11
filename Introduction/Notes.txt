@@ -1,0 +1,16 @@
+-Our language is a static type checker, meaning, it detects errors in code without it running.
+-It determines what's an error and what's not based on the kinds of values being operated on.
+-JS syntax is legal TS, as it is only a superset of JS.
+-It is a typed superset, there are rules about how the different kinds of values can be used.
+-It does not change the runtime behaviour of JS, code running in JS will run the same way in TS.
+
+-Basically it is JS runtime with a compile-time type checker.
+-It highlights unexpected behaviour in my code, lowering the chances of bugs.
+
+-Syntax for defining the interface:
+interface interfaceName  {
+    property1: type,
+    property2: type,
+};
+
+***Composing types: creating complex types by combining simple ones.
