@@ -107,3 +107,11 @@ States:
 
 
 >>>>>>> 60ee217 (Anime watchlist)
+
+**Typing props**
+-Define prop types directly in the child component where they are used.
+
+
+**Marking as completed functionality**
+-The user clicks on the circle, animeItem calls the toggle handler, handler updates animeList, localStorage auto saves, UI re-renders with new status.
+-Find anime by 'mal_id' in animeList, toggle watch status between watching or completed, update the status with the modified array.

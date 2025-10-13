@@ -11,3 +11,7 @@
     gap: 2em;
     cursor: pointer;
 }
+.animeItem .animeImg{
+    width: 50%;
+    height: auto;
+}

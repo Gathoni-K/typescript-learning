@@ -12,5 +12,5 @@ Features implemented:
 3.Fetching data from an API.
 
 
-This is an unfinished app, I am yet to implement the mark as completed functionality, and
-adding individual items, the UI is fine, logic a bit shaky.
+
+

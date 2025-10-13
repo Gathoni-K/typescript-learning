@@ -1,5 +1,4 @@
 import './App.css';
-import React from 'react';
 import {  useEffect, useState } from 'react';
 import Input from './Component/Input';
 import MainWrapper from './Component/MainWrapper';  
@@ -17,12 +16,24 @@ function App() {
     setAnimeList(prev => [...prev, newAnime]);
     // setLoading(false);
   }
-  useEffect(()=> {
+  useEffect(() => {
+  try {
     const saved = localStorage.getItem("animeList");
-    if(saved) {
-      setAnimeList(JSON.parse(saved));
+    if (saved) {
+      // Add validation before parsing
+      const parsed = JSON.parse(saved);
+      if (Array.isArray(parsed)) {
+        setAnimeList(parsed);
+      } else {
+        console.warn('Invalid animeList data in localStorage');
+        localStorage.removeItem("animeList"); // Clear corrupted data
+      }
     }
-  }, [])
+  } catch (err) {
+    console.error('Failed to parse localStorage data:', err);
+    localStorage.removeItem("animeList"); // Clear corrupted data
+  }
+}, []);
   // the block of code above will handle data persistence, storing our anime in localStorage.
   useEffect(()=> {
     localStorage.setItem("animeList", JSON.stringify(animeList));
@@ -37,11 +48,19 @@ function App() {
 
   */
 
+  const markCompletedAnime = (id: number) => {
+    setAnimeList(prev => prev.map(anime => 
+      anime.mal_id === id
+      ? {...anime, watchStatus: anime.watchStatus === "watching" ? "completed" : "watching"}
+      : anime
+    ));
+  };
+
   
   return (
     <>
       <Input onAddAnime={handleAddAnime}/>
-      <MainWrapper animeList={animeList} onDeleteAnime={handleDeleteAnime}/>
+      <MainWrapper animeList={animeList} onDeleteAnime={handleDeleteAnime} onToggleComplete={markCompletedAnime}/>
     </>
   )
 }
